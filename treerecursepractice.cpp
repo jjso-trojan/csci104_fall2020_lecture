@@ -14,12 +14,28 @@ struct Node {
 
 // Write a recursive function to have each node store the sum of
 // the values on the path from the root to each node.
- void prefix(shared_ptr<Node> root);
+ void prefix(shared_ptr<Node> root){
+     if(root == NULL){
+         return;
+     }
+     
+     root->left->val = root->val + root->left->val;
+     prefix(root->left);
+     root->right->val = root->val + root->right->val;
+     prefix(root->right);
+ }
 
  
  // Write a recursive function to print the binary tree in 
  // preorder traversal order
- void print_preorder(shared_ptr<Node> root);
+ void print_preorder(shared_ptr<Node> root){
+     if(root == NULL){
+         return;
+     }
+     print_preorder(shared_ptr<Node> root->left);
+     print_preorder(shared_ptr<Node> root->right);
+     cout<< root->val " ";
+ }
  
  
    
